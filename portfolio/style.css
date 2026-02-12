@@ -1,12 +1,195 @@
+
 *{
-    background-color: rgb(197, 202, 202);
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    text-decoration: none;
+    padding:0;
+    margin:0;
+    box-sizing:border-box;
 }
+
+body{
+    font-family:'Poppins', sans-serif;
+    background:rgb(26, 11, 11);
+    color:#fff;
+    line-height:1.6;
+}
+
+/* ================= HEADER ================= */
+
 #header{
-    background-color: gray;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 60px;
+    height:80px;
+    position:sticky;
+    top:0;
+}
+
+#header h1{
+    font-weight:700;
+}
+
+#list{
+    display:flex;
+    list-style:none;
+    gap:35px;
+}
+
+#list a{
+    color:white;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+#list a:hover{
+    opacity:0.7;
+}
+
+/* ================= MAIN ================= */
+
+main{
+    padding:80px 100px;
+}
+
+/* ================= ABOUT ================= */
+
+#about{
+    max-width:700px;
+    margin-bottom:100px;
+}
+
+#about h1{
+    font-size:42px;
+    margin-bottom:10px;
+}
+
+#about span{
+    color:#ffd369;
+}
+
+#about h3{
+    margin-bottom:20px;
+    font-weight:400;
+}
+
+#about p{
+    margin-bottom:30px;
+}
+
+/* Buttons */
+
+#about a{
+    display:inline-block;
+    padding:12px 24px;
+    border-radius:8px;
+    text-decoration:none;
+    margin-right:15px;
+    font-weight:500;
+    transition:0.3s;
+}
+
+#about a:first-of-type{
+    background:white;
+    color:#764ba2;
+}
+
+#about a:last-of-type{
+    border:1px solid white;
+    color:white;
+}
+
+#about a:hover{
+    transform:translateY(-3px);
+}
+
+/* SECTION HEADINGS  */
+
+section{
+    margin-bottom:100px;
+}
+
+section h2{
+    font-size:28px;
+    margin-bottom:30px;
+}
+
+/* CARD GRID */
+
+.card-container{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap:25px;
+}
+
+.card{
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    padding:25px;
+    border-radius:15px;
+    transition:0.3s ease;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    background: rgba(255,255,255,0.25);
+}
+
+.card h3{
+    margin-bottom:10px;
+}
+
+.card p{
+    font-size:14px;
+}
+
+/* PROJECT LINKS  */
+
+.card a{
+    display:inline-block;
+    margin-top:10px;
+    color:#ffd369;
+    text-decoration:none;
+    font-weight:500;
+}
+/* experience */
+#experience .card {
+    min-height: 220px;
+}
+
+/* education */
+#education .card {
+    max-width: 500px;
 }
 
 
+/* ================= CONTACT================= */
+
+#contact{
+    background: rgba(0,0,0,0.2);
+    padding:30px;
+    border-radius:15px;
+    max-width:500px;
+}
+
+#contact h2{
+    margin-bottom:15px;
+}
+
+#contact p{
+    margin-bottom:10px;
+}
+
+#contact a{
+    color:#ffd369;
+    text-decoration:none;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    text-align:center;
+    padding:20px;
+    margin-top:60px;
+    background: rgba(0,0,0,0.2);
+}
