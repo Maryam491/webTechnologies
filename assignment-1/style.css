@@ -1,0 +1,316 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-seri;
+}
+
+/* header */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: white;
+}
+/* navbar */
+.nav {
+  overflow: auto;
+
+  padding: 20px;
+}
+/* logo in nav bar
+ */
+.nav > img {
+  float: left;
+}
+.nav > ul {
+  text-align: center;
+  width: 90%;
+}
+.nav > ul > li > a {
+  text-decoration: none;
+  color: black;
+}
+.icons {
+  float: right;
+  margin-right: 10px;
+}
+.icons > i {
+  margin-right: 20px;
+}
+
+.nav > ul > li {
+  display: inline-block;
+  margin: 5px 10px;
+}
+
+/* hero section styling
+ */
+#hero-section > img {
+  width: 100%;
+}
+
+
+.categories {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  padding-top: 10px;
+}
+#popular-categories > hr {
+  height: 2px;
+  background-color: black;
+}
+.categories > div > img {
+  width: 200px;
+  height: 200px;
+  border-radius: 20px;
+}
+ /* home edit section */
+.homeEdit {
+  position: relative;  
+  overflow: hidden;
+  padding: 20px;
+  text-align: center;
+}
+.home-edit-text {
+  text-align: center;
+  padding: 10px;
+}
+.home-edit-text > h2 {
+  font-size: 40px;
+}
+#bedding {
+  background-image: url("bedsimg.webp");
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 550px;
+  width: 550px;
+  border-radius: 20px;
+}
+#bedding-basics {
+  background-image: url("beddingBasics.png");
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 250px;
+  width: 500px;
+  position: absolute;
+  left: 650px;
+  top: 30px;
+  border-radius: 20px;
+}
+#bath-linen {
+  background-image: url("BathLinen.png");
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 200px;
+  width: 220px;
+
+  position: absolute;
+  left: 650px;
+  top: 350px;
+  border-radius: 20px;
+}
+#plates {
+  background-image: url("plates.png");
+  background-repeat: no-repeat;
+  height: 200px;
+  width: 200px;
+  background-size: cover;
+  position: absolute;
+  left: 950px;
+  top: 350px;
+  border-radius: 20px;
+}
+#bedding p {
+  font-size: 25px;
+}
+#bedding-basics p {
+  font-size: 25px;
+}
+#bedding,
+#bedding-basics,
+#bath-linen,
+#plates {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; 
+  align-items: center; 
+  text-align: center;
+  color: white;
+}
+.explore {
+  background: none;
+  border: none;
+  color: white;
+  height: 40px;
+  width: 110px;
+}
+.explore:hover {
+  background: black;
+  border-radius: 20px;
+  transition: 0.2s;
+}
+/* feature */
+#women-btn {
+  float: right;
+  background-color: #8cc63f;
+}
+#men-btn {
+  float: right;
+}
+#men-btn,
+#women-btn {
+  height: 40px;
+  width: 100px;
+  border-radius: 20px;
+  border: none;
+  margin-left: 10px;
+}
+.feature > img {
+  height: 450px;
+  width: 310px;
+  border-radius: 10px;
+}
+.features-container {
+  display: flex;
+  gap: 10px;
+}
+#feature-btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+#feature-btns > h1 {
+  padding: 10px;
+}
+.feature > button {
+  float: right;
+  border: none;
+  height: 40px;
+  width: 100px;
+  border-radius: 20px;
+}
+/* sale */
+.sale-images {
+  position: relative;
+  height: 600px;
+}
+.sale > h2 {
+  text-align: center;
+  margin: 10px;
+  font-size: 50px;
+}
+
+.kids > img {
+  height: 400px;
+  width: 250px;
+}
+.kids {
+  position: absolute;
+  top: 100px;
+  bottom: 100px;
+  left: 20px;
+}
+.ready-wear > img {
+  height: 280px;
+  width: 250px;
+}
+.ready-wear {
+  position: absolute;
+  left: 290px;
+}
+.ideas-home > img {
+  height: 280px;
+  width: 250px;
+}
+.ideas-home {
+  position: absolute;
+  left: 290px;
+  top: 300px;
+}
+.salt-ideas > img {
+  height: 400px;
+  width: 250px;
+}
+.salt-ideas {
+  position: absolute;
+  left: 550px;
+  top: 100px;
+}
+.women-unstitched > img {
+  height: 280px;
+  width: 220px;
+}
+.women-unstitched {
+  position: absolute;
+  left: 820px;
+}
+.accessory > img {
+  height: 280px;
+  width: 220px;
+}
+.accessory {
+  position: absolute;
+  left: 820px;
+  top: 300px;
+}
+.eastern > img {
+  height: 400px;
+  width: 200px;
+}
+.eastern {
+  position: absolute;
+  right: 20px;
+  top: 100px;
+}
+
+/* footer */
+#footer {
+  display: flex;
+  background-color: #ebebeb;
+  gap: 50px;
+  padding: 20px;
+}
+.my-account,
+.customer-care,
+.find-us,
+.news-letter {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.my-account,
+.customer-care,
+.find-us {
+  width: 60%;
+}
+#footer a {
+  text-decoration: none;
+  color: black;
+  font-size: small;
+}
+input {
+  height: 30px;
+  width: 300px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  padding: 5px;
+  margin: 5px;
+}
+#submit {
+  background-color: black;
+  color: white;
+  height: 40px;
+  width: 150px;
+  border-radius: 10px;
+  margin: 10px;
+  padding: 5px;
+}
