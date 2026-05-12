@@ -1,0 +1,6 @@
+<svg width="250" height="200" xmlns="http://www.w3.org/2000/svg">
+  <rect width="250" height="200" fill="#f5f5f5"/>
+  <text x="125" y="90" text-anchor="middle" font-family="Arial" font-size="16" fill="#999">Product Image</text>
+  <circle cx="125" cy="120" r="25" fill="#ddd" opacity="0.5"/>
+  <text x="125" y="170" text-anchor="middle" font-family="Arial" font-size="12" fill="#999">Image not available</text>
+</svg>
