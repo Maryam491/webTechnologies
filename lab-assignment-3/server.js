@@ -125,7 +125,7 @@ app.post('/auth/register', async (req, res) => {
     req.session.userId = user._id;
     req.session.role = user.role;
     req.flash('success', `Welcome, ${user.name}!`);
-    return res.redirect('/');
+    return res.redirect('/products');
   } catch (err) {
     console.error('Registration error:', err);
     req.flash('error', 'Unable to register. Please try again.');
@@ -157,7 +157,7 @@ app.post('/auth/login', async (req, res) => {
     req.session.userId = user._id;
     req.session.role = user.role;
     req.flash('success', `Welcome back, ${user.name}!`);
-    return res.redirect('/');
+    return res.redirect('/products');
   } catch (err) {
     console.error('Login error:', err);
     req.flash('error', 'Unable to sign in. Please try again.');
@@ -166,9 +166,11 @@ app.post('/auth/login', async (req, res) => {
 });
 
 app.get('/auth/logout', (req, res) => {
-  req.session.destroy(() => {
-    res.redirect('/');
-  });
+  // Clear user session but keep session object so flash can persist
+  req.session.userId = null;
+  req.session.role = null;
+  req.flash('success', 'You have successfully logged out.');
+  return res.redirect('/auth/login');
 });
 
 app.get('/profile', isLoggedIn, async (req, res) => {
@@ -277,7 +279,8 @@ app.get('/admin', (req, res) => {
 
 app.get('/admin/login', (req, res) => {
   const err = req.flash('error')[0] || null;
-  res.render('admin-login', { error: err });
+  const success = req.flash('success')[0] || null;
+  res.render('admin-login', { error: err, success });
 });
 
 app.post('/admin/login', async (req, res) => {
@@ -311,9 +314,11 @@ app.post('/admin/login', async (req, res) => {
 });
 
 app.get('/admin/logout', (req, res) => {
-  req.session.destroy(() => {
-    res.redirect('/');
-  });
+  req.session.isAdmin = null;
+  req.session.role = null;
+  req.session.userId = null;
+  req.flash('success', 'Admin signed out successfully.');
+  return res.redirect('/admin/login');
 });
 
 app.get('/admin/dashboard', isAdmin, async (req, res) => {

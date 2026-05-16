@@ -246,6 +246,16 @@
                 <% } %>
             </nav>
         </header>
+        <% if (success && success.length) { %>
+            <div style="background:#ecfccb;color:#166534;padding:12px;border-radius:8px;margin-bottom:16px;">
+                <%= success[0] %>
+            </div>
+        <% } %>
+        <% if (error && error.length) { %>
+            <div style="background:#fee2e2;color:#b91c1c;padding:12px;border-radius:8px;margin-bottom:16px;">
+                <%= error[0] %>
+            </div>
+        <% } %>
         <h1>Product Catalog</h1>
 
         <!-- Filters and Search -->

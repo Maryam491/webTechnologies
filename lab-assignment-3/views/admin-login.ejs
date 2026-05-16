@@ -108,6 +108,11 @@
         <% if (error) { %>
             <div class="error-message"><%= error %></div>
         <% } %>
+        <% if (typeof success !== 'undefined' && success) { %>
+            <div style="background: #ecfccb; color: #166534; padding: 10px 14px; border-radius: 10px; margin-bottom: 12px;">
+                <%= success %>
+            </div>
+        <% } %>
         <form method="POST" action="/admin/login">
             <div>
                 <label for="username">Username</label>
