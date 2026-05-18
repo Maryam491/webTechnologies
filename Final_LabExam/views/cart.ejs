@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        body {
+            background: #fbf2e8;
+        }
+        .cart-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fcf5ea;
+            border-radius: 16px;
+        }
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .page-header a {
+            text-decoration: none;
+            color: #111;
+            font-weight: 700;
+        }
+        .page-header a:hover {
+            color: #b5702d;
+        }
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+        }
+        .cart-table th {
+            background: #f8efe0;
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        .cart-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+        }
+        .cart-table img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+        .remove-btn {
+            padding: 6px 12px;
+            background: #d63384;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .remove-btn:hover {
+            background: #b5702d;
+        }
+        .cart-summary {
+            background: #f8efe0;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: right;
+            margin-bottom: 20px;
+        }
+        .cart-summary h3 {
+            margin: 0 0 15px 0;
+        }
+        .total-price {
+            font-size: 1.5em;
+            color: #d63384;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .checkout-btn {
+            padding: 12px 30px;
+            background: #1b1b1b;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        .checkout-btn:hover {
+            background: #3d2d20;
+        }
+        .continue-shopping {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #b5702d;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .continue-shopping:hover {
+            background: #8a5520;
+        }
+        .empty-cart {
+            text-align: center;
+            padding: 50px;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="cart-container">
+        <header class="page-header">
+            <div>
+                <a href="/">HOME</a>
+                <a href="/products">PRODUCTS</a>
+            </div>
+            <h1>Shopping Cart</h1>
+        </header>
+
+        <% if (success && success.length) { %>
+            <div style="background:#ecfccb;color:#166534;padding:12px;border-radius:8px;margin-bottom:16px;">
+                <%= success[0] %>
+            </div>
+        <% } %>
+        <% if (error && error.length) { %>
+            <div style="background:#fee2e2;color:#b91c1c;padding:12px;border-radius:8px;margin-bottom:16px;">
+                <%= error[0] %>
+            </div>
+        <% } %>
+
+        <% if (cart.length > 0) { %>
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Subtotal</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% cart.forEach(item => { %>
+                        <tr>
+                            <td>
+                                <img src="<%= item.image %>" alt="<%= item.name %>">
+                                <strong><%= item.name %></strong>
+                            </td>
+                            <td>$<%= item.price.toFixed(2) %></td>
+                            <td><%= item.quantity %></td>
+                            <td>$<%= (item.price * item.quantity).toFixed(2) %></td>
+                            <td>
+                                <form method="POST" action="/cart/remove" style="display:inline;">
+                                    <input type="hidden" name="productId" value="<%= item.productId %>">
+                                    <button type="submit" class="remove-btn">Remove</button>
+                                </form>
+                            </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+
+            <div class="cart-summary">
+                <h3>Order Summary</h3>
+                <div class="total-price">
+                    Total: $<%= total.toFixed(2) %>
+                </div>
+                <form method="GET" action="/checkout" style="display:inline;">
+                    <button type="submit" class="checkout-btn">Proceed to Checkout</button>
+                </form>
+            </div>
+
+            <a href="/products" class="continue-shopping">Continue Shopping</a>
+        <% } else { %>
+            <div class="empty-cart">
+                <h2>Your cart is empty</h2>
+                <p>Add some products to get started!</p>
+                <a href="/products" class="continue-shopping">Browse Products</a>
+            </div>
+        <% } %>
+    </div>
+</body>
+</html>

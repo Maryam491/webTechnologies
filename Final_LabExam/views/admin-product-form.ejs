@@ -1,0 +1,63 @@
+<%- include('admin-header', { title: formTitle, active: action.includes('/new') ? 'new' : '' }) %>
+
+<% if (errors && errors.length) { %>
+    <div class="error-card" style="background:#fee2e2;border:1px solid #fecaca;color:#b91c1c;border-radius:12px;padding:16px;margin-bottom:20px;">
+        <strong>Validation errors:</strong>
+        <ul style="margin:10px 0 0;padding-left:20px;">
+            <% errors.forEach(error => { %>
+                <li><%= error %></li>
+            <% }) %>
+        </ul>
+    </div>
+<% } %>
+
+<form method="POST" action="<%= action %>" enctype="multipart/form-data" style="background:#fff;border:1px solid #e2e8f0;border-radius:18px;padding:24px;max-width:860px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:16px;">
+        <label style="display:block;">
+            <span style="font-weight:700;color:#334155;">Name<span style="color:#dc2626;">*</span></span>
+            <input name="name" type="text" value="<%= product.name || '' %>" required style="width:100%;margin-top:8px;padding:12px;border:1px solid #cbd5e1;border-radius:12px;">
+        </label>
+
+        <label style="display:block;">
+            <span style="font-weight:700;color:#334155;">Category<span style="color:#dc2626;">*</span></span>
+            <input name="category" type="text" value="<%= product.category || '' %>" required style="width:100%;margin-top:8px;padding:12px;border:1px solid #cbd5e1;border-radius:12px;">
+        </label>
+
+        <label style="display:block;">
+            <span style="font-weight:700;color:#334155;">Price ($)<span style="color:#dc2626;">*</span></span>
+            <input name="price" type="number" step="0.01" min="0" value="<%= product.price != null ? product.price : '' %>" required style="width:100%;margin-top:8px;padding:12px;border:1px solid #cbd5e1;border-radius:12px;">
+        </label>
+
+        <label style="display:block;">
+            <span style="font-weight:700;color:#334155;">Stock<span style="color:#dc2626;">*</span></span>
+            <input name="stock" type="number" min="0" value="<%= product.stock != null ? product.stock : '' %>" required style="width:100%;margin-top:8px;padding:12px;border:1px solid #cbd5e1;border-radius:12px;">
+        </label>
+
+        <label style="display:block;grid-column:span 2;">
+            <span style="font-weight:700;color:#334155;">Rating</span>
+            <input name="rating" type="number" step="0.1" min="0" max="5" value="<%= product.rating != null ? product.rating : 0 %>" style="width:100%;margin-top:8px;padding:12px;border:1px solid #cbd5e1;border-radius:12px;">
+        </label>
+    </div>
+
+    <label style="display:block;margin-bottom:18px;">
+        <span style="font-weight:700;color:#334155;">Description</span>
+        <textarea name="description" rows="5" style="width:100%;margin-top:8px;padding:14px;border:1px solid #cbd5e1;border-radius:14px;"><%= product.description || '' %></textarea>
+    </label>
+
+    <div style="margin-bottom:20px;">
+        <label style="display:block;">
+            <span style="font-weight:700;color:#334155;">Product Image</span>
+            <input name="image" type="file" accept="image/*" style="width:100%;margin-top:10px;">
+        </label>
+        <% if (product.image) { %>
+            <div style="margin-top:16px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+                <span style="font-weight:700;color:#334155;">Current Image:</span>
+                <img src="<%= product.image %>" alt="Product image" style="max-width:120px;border-radius:12px;border:1px solid #e2e8f0;">
+            </div>
+        <% } %>
+    </div>
+
+    <button type="submit" class="btn" style="padding:14px 20px;border:none;border-radius:12px;background:#0f172a;color:white;font-weight:700;cursor:pointer;"><%= buttonText %></button>
+</form>
+
+<%- include('admin-footer') %>

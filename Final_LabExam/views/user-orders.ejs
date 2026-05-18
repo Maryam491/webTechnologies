@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders</title>
+    <link rel="stylesheet" href="/style.css">
+    <style>
+        body {
+            background: #fbf2e8;
+        }
+        .orders-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fcf5ea;
+            border-radius: 16px;
+        }
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .page-header a {
+            text-decoration: none;
+            color: #111;
+            font-weight: 700;
+        }
+        .page-header a:hover {
+            color: #b5702d;
+        }
+        .order-card {
+            background: #f8efe0;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .order-id {
+            font-weight: bold;
+            color: #111;
+        }
+        .order-date {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+        }
+        .status-pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .status-confirmed {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+        .status-shipped {
+            background: #cfe2ff;
+            color: #084298;
+        }
+        .status-delivered {
+            background: #d1e7dd;
+            color: #0f5132;
+        }
+        .order-items {
+            margin-bottom: 15px;
+        }
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #e8d8c5;
+        }
+        .order-item:last-child {
+            border-bottom: none;
+        }
+        .order-total {
+            text-align: right;
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #d63384;
+            padding-top: 10px;
+        }
+        .no-orders {
+            text-align: center;
+            padding: 50px;
+            color: #6c757d;
+        }
+        .continue-shopping {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #b5702d;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="orders-container">
+        <header class="page-header">
+            <div>
+                <a href="/">HOME</a>
+                <a href="/products">PRODUCTS</a>
+            </div>
+            <h1>My Orders</h1>
+        </header>
+
+        <% if (success && success.length) { %>
+            <div style="background:#ecfccb;color:#166534;padding:12px;border-radius:8px;margin-bottom:16px;">
+                <%= success[0] %>
+            </div>
+        <% } %>
+
+        <% if (orders.length > 0) { %>
+            <% orders.forEach(order => { %>
+                <div class="order-card">
+                    <div class="order-header">
+                        <div>
+                            <div class="order-id">Order #<%= order._id.toString().substr(-8).toUpperCase() %></div>
+                            <div class="order-date"><%= new Date(order.createdAt).toLocaleDateString() %></div>
+                        </div>
+                        <span class="status-badge status-<%= order.status %>"><%= order.status.toUpperCase() %></span>
+                    </div>
+
+                    <div class="order-items">
+                        <% order.items.forEach(item => { %>
+                            <div class="order-item">
+                                <span><%= item.name %> (×<%= item.quantity %>)</span>
+                                <span>$<%= (item.price * item.quantity).toFixed(2) %></span>
+                            </div>
+                        <% }); %>
+                    </div>
+
+                    <div class="order-total">
+                        Total: $<%= order.total.toFixed(2) %>
+                    </div>
+                </div>
+            <% }); %>
+        <% } else { %>
+            <div class="no-orders">
+                <h2>You haven't placed any orders yet</h2>
+                <p>Start shopping to place your first order!</p>
+                <a href="/products" class="continue-shopping">Browse Products</a>
+            </div>
+        <% } %>
+    </div>
+</body>
+</html>
